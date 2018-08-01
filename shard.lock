@@ -1,0 +1,14 @@
+version: 1.0
+shards:
+  halite:
+    github: icyleaf/halite
+    version: 0.5.0
+
+  tourmaline:
+    github: watzon/tourmaline
+    commit: f4eaded5084d48fa8a47bd22a3ccfe976b6867b8
+
+  ydl:
+    path: ~/ydl/
+    version: 0
+

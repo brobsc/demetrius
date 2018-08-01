@@ -1,0 +1,19 @@
+name: demetrius
+version: 0.1.0
+
+authors:
+  - Bruno <bruno.robsiq@gmail.com>
+
+targets:
+  demetrius:
+    main: src/demetrius.cr
+
+dependencies:
+  tourmaline:
+    github: watzon/tourmaline
+  ydl:
+    path: ~/ydl/
+
+crystal: 0.25.1
+
+license: MIT
