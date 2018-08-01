@@ -3,7 +3,6 @@ require "tourmaline"
 require "ydl"
 require "http"
 
-
 alias TGBot = Tourmaline::Bot
 
 bot = TGBot::Client.new(ENV["TELEGRAM_API_KEY"])
@@ -21,7 +20,7 @@ bot.command("ydl") do |msg, args|
     bot.send_message(msg.chat.id, text, reply_to_message_id: msg.message_id, parse_mode: :markdown)
     next
   end
-  
+
   text = "Let me try and fetch that!"
   bot.send_message(msg.chat.id, text, reply_to_message_id: msg.message_id, parse_mode: :markdown)
   bot.send_chat_action(msg.chat.id, action: :typing)
@@ -56,8 +55,8 @@ bot.command("ydl") do |msg, args|
   inline_kb = TGBot::InlineKeyboardMarkup.new(inline_buttons)
 
   text = %<Is this what you want?\n\n[#{video.title}](#{video.url})>
-  bot.send_message(msg.chat.id, text, parse_mode: :markdown, 
-                  reply_markup: inline_kb)
+  bot.send_message(msg.chat.id, text, parse_mode: :markdown,
+    reply_markup: inline_kb)
 end
 
 bot.on(TGBot::UpdateAction::Text) do |update|
@@ -79,7 +78,7 @@ bot.on(TGBot::UpdateAction::CallbackQuery) do |update|
   puts(temp_msg.to_json)
   bot.send_chat_action(msg.chat.id, action: :record_video)
   path = videos.last.not_nil!.download(cb.data.not_nil!)
-  puts "Video downloaded to #{path}" 
+  puts "Video downloaded to #{path}"
   temp_msg = bot.edit_message_text(temp_msg.chat.id, "Done. I'm uploading to you", temp_msg.message_id)
   bot.send_chat_action(msg.chat.id, action: :upload_video)
   video_file = File.open(path)
