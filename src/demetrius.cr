@@ -27,9 +27,11 @@ bot.command("ydl") do |msg, args|
   bot.send_chat_action(msg.chat.id, action: :typing)
 
   begin
+    print(args[0])
     video = Ydl::Video.new(args[0])
-  rescue
+  rescue ex
     text = "That wasn't a valid url"
+    puts(ex.message)
     bot.send_message(msg.chat.id, text, parse_mode: :markdown)
     next
   end
@@ -70,6 +72,7 @@ bot.on(TGBot::UpdateAction::CallbackQuery) do |update|
 
   if cb.data == "cancel"
     bot.delete_message(msg.chat.id, msg.message_id)
+    next
   end
 
   temp_msg = bot.send_message(msg.chat.id, "Ok. Downloading right now...")
