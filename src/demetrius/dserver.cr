@@ -1,4 +1,4 @@
-require "JSON"
+require "json"
 
 module Demetrius
   def self.wait_server(bot)
